@@ -1,0 +1,29 @@
+loop through each child, if the child is not what we are looking for
+then we look through the child's children until we find the node we
+are looking for. When found, we return the node.
+
+Only checking for children with folder as types.
+
+If an element has a child that we already know of (e.g. file 1)
+Then we return that element (node)
+
+Pass an original node (file) that we will compare with the others for
+finding the folder.
+
+Working for 1 level
+Now we check if the node is a folder then do the loop again.
+
+first loop as for loop to get the first level folders.
+
+if first folders have childCount > 0 -> call loopOver functio
+function loopOverChildren(children)
+inside it if at any point it encounters the file being looked for
+then it will break.
+
+Successfully returning the file selected
+Now we need to track the latest parent
+
+line 563 used to return fold. Now just a simple return;
+
+Removing folders recursively removing everything in that folder.
+Recursive function which once it finds it, stops the function.

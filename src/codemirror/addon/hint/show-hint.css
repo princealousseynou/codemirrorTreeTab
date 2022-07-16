@@ -1,0 +1,56 @@
+.CodeMirror-hints {
+  z-index:100007 !important;
+  position:fixed !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  font-size: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  -webkit-box-shadow: 2px 3px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 3px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 3px 2px rgba(0,0,0,.2);
+  border-radius: 2px;
+  border: 1px solid silver;
+  background: white;
+  font-family: monospace;
+  min-height: 250px;
+  max-height: 255px;
+  overflow: hidden;
+  width:220px;
+}
+
+.CodeMirror-hint {
+  margin: 0;
+  padding: 3px 3px;
+  border-radius: 2px;
+  white-space: pre;
+  color: #b6b6b6;
+  cursor: pointer;
+}
+
+
+li.CodeMirror-hint-active {
+  background: rgba(175,23,72,0.77);
+  color: white;
+}
+/* width */
+/*::-webkit-scrollbar {*/
+  /*width: 20px;*/
+/*}*/
+
+/* Track */
+/*::-webkit-scrollbar-track {*/
+  /*box-shadow: inset 0 0 15px red;*/
+  /*border-radius: 10px;*/
+/*}*/
+
+/*!* Handle *!*/
+/*::-webkit-scrollbar-thumb {*/
+  /*background: red;*/
+  /*border-radius: 10px;*/
+/*}*/
+
+/*!* Handle on hover *!*/
+/*::-webkit-scrollbar-thumb:hover {*/
+  /*background: #b30000;*/
+/*}*/

@@ -1,0 +1,62 @@
+/* ide.createTab("First tab", {
+					autoRefresh: true,
+					lineNumbers: true,
+					theme: 'dracula',
+					styleActiveLine: true,
+					keyMap: "sublime",
+					lineWrapping: true,
+					foldGutter: true,
+					autoCloseBrackets: true,
+					autoCloseTags: true,
+					showTrailingSpace: true,
+					styleActiveSelected: true,
+					styleSelectedText: true,
+					matchBrackets: true,
+					mode: 'text/html',
+					htmlMode: true,
+					gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+					extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); },  'Tab': 'emmetExpandAbbreviation', "Ctrl-T": "autocomplete"},
+					highlightSelectionMatches: {annotateScrollbar: true},
+					indentWithTabs: true,
+					profile: 'xhtml',
+					value: `<html style="color: green">
+					<!-- this is a comment -->
+					<head>
+					  <title>Mixed HTML Example</title>
+					  <style>
+						h1 {font-family: comic sans; color: #f0f;}
+						div {background: yellow !important;}
+						body {
+						  max-width: 50em;
+						  margin: 1em 2em 1em 5em;
+						}
+					  </style>
+					</head>
+					<body>
+					  <h1>Mixed HTML Example</h1>
+					  <script>
+						function jsFunc(arg1, arg2) {
+						  if (arg1 && arg2) document.body.innerHTML = "achoo";
+						}
+					  </script>
+					</body>
+				  </html>
+					`
+				  });
+
+on double click,
+we first check if has been opened,
+If it has, then we just switch to it
+if it isn't then we create a new one by
+first checking the extension.
+If the file is renamed, we check if it is in the 
+filetabDict, if it is, we take it,
+check the new mode, get the code, and set the 
+config of the tab to the old value and new mode.
+
+variabels for htmlValue, htmlMode, the rest is default
+
+later modify create function to only take these options
+and theme as well, the rest is default
+
+Renaming to be done after. Now work on implementation

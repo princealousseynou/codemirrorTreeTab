@@ -1,0 +1,44 @@
+<html>
+  <script>
+	ide.createTab("Seventh tab", {
+  autoRefresh: true,
+  lineNumbers: true,
+  theme: 'darcula',
+  styleActiveLine: true,
+  keyMap: "sublime",
+  lineWrapping: true,
+  foldGutter: true,
+  autoCloseBrackets: true,
+  autoCloseTags: true,
+  showTrailingSpace: true,
+  styleActiveSelected: true,
+  styleSelectedText: true,
+  matchBrackets: true,
+  mode: 'text/html',
+  // mode: 'htmlmixed',
+  htmlMode: true,
+  //  matchTags:{bothTags: false},
+  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+  extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); },  'Tab': 'emmetExpandAbbreviation', "Ctrl-T": "autocomplete"},
+  highlightSelectionMatches: {annotateScrollbar: true},
+  //  hintOptions: {hint: synonyms},
+  indentWithTabs: true,
+  profile: 'xhtml'
+})
+  </script>
+</html>
+
+dracula
+material
+shadowfox
+lucario
+
+languages:
+htmlmixed
+js
+python
+c, c++, c#, Java
+
+Work on double click functionality to first check if the node is
+a file, then calls a function to open it in a tab. 
+This function will either create a new tab or switch to the tab

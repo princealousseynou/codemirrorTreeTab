@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TreeJS</title>
+
+	<script src="../tree.js"></script>
+	<link rel="stylesheet" href="../treejs.css" id="treejs_styles">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+	<script src="https://unpkg.com/codemirror@5.58.2/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/codemirror@5.58.2/lib/codemirror.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/codemirror@5.58.2/mode/javascript/javascript.js"></script>
+
+	<script src="src/codemirror/lib/codemirror.js"></script>
+    <script src="src/codemirror/mode/javascript/javascript.js"></script>
+    <script src="src/codemirror/addon/search/search.js"></script>
+    <script src="src/codemirror/addon/selection/mark-selection.js"></script>
+    <script src="src/codemirror/addon/dialog/dialog.js"></script>
+    <script src="src/codemirror/addon/scroll/simplescrollbars.js" type="text/javascript"></script>
+    <script src="src/codemirror/addon/merge/merge.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.54.0/addon/display/autorefresh.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+    <script src="src/codemirror/addon/fold/foldcode.js"></script>
+    <script src="src/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="src/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="src/codemirror/addon/hint/show-hint.js"></script>
+    <script src="src/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="src/codemirror/addon/fold/markdown-fold.js"></script>
+    <script src="src/codemirror/lib/util/formatting.js"></script>
+    <script src="src/codemirror/addon/fold/comment-fold.js"></script>
+    <script src="src/codemirror/addon/hint/html-hint.js"></script>
+    <script src="src/codemirror/addon/hint/xml-hint.js"></script>
+    <script src="src/codemirror/addon/mode/multiplex.js"></script>
+    <script src="src/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="src/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="src/codemirror/addon/edit/closetag.js"></script>
+    <script src="src/codemirror/addon/dialog/dialog.js"></script>
+    <script src="src/codemirror/addon/comment/comment.js"></script>
+    <script src="src/codemirror/addon/scroll/annotatescrollbar.js"></script>
+    <script src="src/codemirror/addon/search/matchesonscrollbar.js"></script>
+    <script src="src/codemirror/addon/search/searchcursor.js"></script>
+    <script src="src/codemirror/addon/search/search.js"></script>
+    <script src="src/codemirror/addon/search/match-highlighter.js"></script>
+    <script src="src/codemirror/addon/search/jump-to-line.js"></script>
+    <script src="src/codemirror/addon/scroll/simplescrollbars.js"></script>
+    <script src="src/codemirror/addon/edit/trailingspace.js"></script>
+    <script src="src/codemirror/keymap/sublime.js"></script>
+    <script src="src/codemirror/mode/xml/xml.js"></script>
+    <script src="src/codemirror/addon/mode/loadmode.js"></script>
+    <script src="src/codemirror/mode/meta.js"></script>
+    <script src="src/codemirror/addon/display/panel.js"></script>
+    <script src="src/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="src/codemirror/addon/selection/mark-selection.js"></script>
+    <script src="src/codemirror/addon/edit/matchtags.js"></script>
+	<script src="src/codemirror/mode/clike/clike.js"></script>
+	<script src="src/codemirror/mode/python/python.js"></script>
+	<script src="src/codemirror/mode/css/css.js"></script>
+	<script src="src/codemirror/mode/jsx/jsx.js"></script>
+
+	<link rel="stylesheet" href="src/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="src/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="src/codemirror/theme/eyegaze.css">
+    <link rel="stylesheet" href="src/codemirror/theme/colorforth.css">
+	<link rel="stylesheet" href="src/codemirror/theme/dracula.css">
+	<link rel="stylesheet" href="src/codemirror/theme/lucario.css">
+	<link rel="stylesheet" href="src/codemirror/theme/material.css">
+	<link rel="stylesheet" href="src/codemirror/theme/duotone-dark.css">
+    <link rel="stylesheet" href="src/codemirror/theme/neo.css">
+	<link rel="stylesheet" href="src/codemirror/theme/shadowfox.css">
+	<link rel="stylesheet" href="src/codemirror/theme/lucario.css">
+    <link rel="stylesheet" href="src/codemirror/theme/monokai.css">
+    <link rel="stylesheet" href="src/codemirror/addon/search/matchesonscrollbar.css">
+    <link rel="stylesheet" href="src/codemirror/addon/scroll/simplescrollbars.css">
+    <link rel="stylesheet" href="src/codemirror/addon/hint/show-hint.css">
+	<script>
+		function changeIcons(fa_icons){
+			if(fa_icons){
+				view.changeOption("leaf_icon", '<i class="fas fa-file"></i>');
+				view.changeOption("parent_icon", '<i class="fas fa-folder"></i>');
+
+				TreeConfig.open_icon = '<i class="fas fa-angle-down"></i>';
+				TreeConfig.close_icon = '<i class="fas fa-angle-right"></i>';
+			}else{
+				view.changeOption("leaf_icon", undefined);
+				view.changeOption("parent_icon", undefined);
+
+				TreeConfig.open_icon = TreeUtil.default_open_icon;
+				TreeConfig.close_icon = TreeUtil.default_close_icon;
+			}
+
+			view.reload();
+		}
+
+		function toggleCustomIcon(n){
+			if(n == true){
+				root.changeOption("icon", '<i class="fas fa-code-branch"></i>');
+			}else{
+				root.changeOption("icon", undefined);
+			}
+
+			view.reload();
+		}
+
+        function removeElement(){
+
+// if(n2.isLeaf()) return; n2.removeChild(n2.getChildren()[n2.getChildCount()-1]); count--; view.reload();
+        //get Selected node.
+        n = view.getSelectedNodes()[0];
+        if (n){
+            console.log(n.toString());
+            console.log(n);
+            // if(n2.isLeaf()) return;
+            // n.removeChild(n.getChildren()[n.getChildCount() -1]);
+            var parent = n.getRoot();
+            console.log(parent)
+            const folderNode = parent.getFolders(n);
+            console.log(folderNode);
+			console.log(folderNode.toString());
+            if (folderNode){console.log("Folder of selected file: ", folderNode.toString())};
+            
+            // parent.removeChild(n.getChildren()[n.getChildCount() -1]);
+            folderNode.removeChild(n);
+            view.reload()
+			console.log("view reloaded")
+        }
+/*         console.log(n.toString());
+        if(n2.isLeaf()) return;
+            n2.removeChild(n2.getChildren()[n2.getChildCount()-1]);
+            count--;
+            view.reload();
+            view.reload(); */
+}
+		function addElement(){
+			n = view.getSelectedNodes()[0];
+			console.log(n);
+			if (n){
+				console.log(n.toString());
+				console.log(n);
+				// console.log(n.count);
+				// if(n2.isLeaf()) return;
+				// n.removeChild(n.getChildren()[n.getChildCount() -1]);
+	/*             var parent = n.getRoot();
+				console.log(parent)
+				const folderNode = parent.getFolders(n);
+				console.log(folderNode);
+				if (folderNode){console.log("Folder of selected file: ", folderNode.toString())}; */
+				
+				// parent.removeChild(n.getChildren()[n.getChildCount() -1]);
+				const newTree = new TreeNode("File 3,35", "file");
+				var parent = n.getRoot();
+				let treeFolder;
+				if (n.type === "file"){
+					treeFolder = parent.getFolders(n);
+				}
+				else{
+					treeFolder = n;
+				}
+				// const treeFolder = parent.getFolders(n);
+				treeFolder.addChild(newTree);
+				view.reload()
+        	}
+		}
+
+
+		function getFile(number){
+			if (fileDict[number]){
+				return fileDict[number];
+			}
+		}
+		function getFolder(number){
+			if (folderDict[number]){
+				return folderDict[number];
+			}
+		}
+	</script>
+
+
+	<style media="screen">
+		*{
+			box-sizing: border-box;
+			position: relative;
+		}
+
+		body{
+			padding: 0;
+			margin: 0;
+			font-family: sans-serif;
+		}
+
+		header h1{
+			margin: 1em;
+			display: block;
+			text-align: center;
+			font-size: 3rem;
+			color: #fff;
+		}
+
+		header{
+			padding: 5px;
+			margin-bottom: 1em;
+
+			background-color: #159957;
+			background-image: -webkit-linear-gradient(30deg, #155799, #159957);
+			background-image: -o-linear-gradient(30deg, #155799, #159957);
+			background-image: linear-gradient(120deg, #155799, #159957);
+		}
+
+		main{
+			margin: 0 1em;
+			text-align: center;
+		}
+
+		#container{
+			width: 400px;
+			border: 1px solid #ccc;
+			margin: 0 auto;
+			margin-bottom: 1em;
+		}
+
+		.btn{
+			display: inline-block;
+			color: #fff;
+			padding: 10px 20px;
+			/* background-color: #159957; */
+            background-color: #280e91;
+/* 			background-image: -webkit-linear-gradient(30deg, #155799, #159957);
+			background-image: -o-linear-gradient(30deg, #155799, #159957);
+			background-image: linear-gradient(120deg, #155799, #159957); */
+			border-color: #fff3;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 0.3rem;
+			transition: background-image 0.2s;
+			text-decoration: none !important;
+			margin-bottom: 10px;
+		}
+
+		.btn:hover{
+            background-color: #300fb1;
+/* 			background-image: -webkit-linear-gradient(30deg, #155799, #5b9915);
+			background-image: -o-linear-gradient(30deg, #155799, #5b9915);
+			background-image: linear-gradient(120deg, #155799, #5b9915); */
+		}
+
+		#description{
+			margin-top: 1em;
+		}
+
+		a{
+			color: #0085fc;
+		}
+	</style>
+</head>
+<body>
+<!-- 	<header>
+		<h1>treejs - Demo Page</h1>
+	</header> -->
+
+	<main>
+		<div id="container"></div>
+
+		<div id="options">
+			<!-- <a href="#" class="btn" onclick="n2.addChild(new TreeNode('File ' + count++, 'file')); view.reload();">Add new element</a> -->
+			<a href="#" class="btn" onclick="addElement(); view.reload();">Add new element</a>
+			<a href="#" class="btn" onclick="removeElement()">Remove element</a>
+			<!-- <a href="#" class="btn" onclick="view.expandAllNodes(); view.reload();">Expand nodes</a> -->
+			<!-- <a href="#" class="btn" onclick="view.collapseAllNodes(); view.reload();">Collapse nodes</a> -->
+            <a href="#" class="btn" onclick="view.toggleAllNodes(); view.reload();">Toggle nodes (Expand/ collapse)</a>
+			<!-- <a href="#" class="btn" onclick="view.changeOption('show_root', !TreeUtil.getProperty(view.getOptions(), 'show_root', true)); view.reload();">Toggle show root</a> -->
+			<br>
+			<!-- <a href="#" class="btn" onclick="alert(view.getSelectedNodes().join('; '));">Show selected nodes</a> -->
+			<!-- <a href="#" class="btn" onclick="root.toggleSelected(); view.reload();">Toggle selected</a> -->
+			<!-- <a href="#" class="btn" onclick="n3.toggleEnabled(); view.reload();">Toggle enabled</a> -->
+			<!-- <a href="#" class="btn" onclick="n11.changeOption('forceParent', !TreeUtil.getProperty(n11.getOptions(), 'forceParent', false)); view.reload();">Toggle force parent</a> -->
+			<br>
+			<a href="#" class="btn" onclick="changeIcons(this.innerHTML == 'Font-Awesome icons'); if(this.innerHTML == 'Font-Awesome icons') this.innerHTML = 'Default icons'; else this.innerHTML = 'Font-Awesome icons'">Font-Awesome icons</a>
+			<!-- <a href="#" class="btn" onclick="toggleCustomIcon(TreeUtil.getProperty(root.getOptions(), 'icon', true));">Change custom icon</a> -->
+		</div>
+	</main>
+
+	<script>
+		var fileCount = 1;
+		var folderCount = 1;
+		var fileDict = {};
+		var folderDict = {};
+		var fileTabDict = {};
+
+		var root = new TreeNode("root", "root");
+		// console.log("folder Count", root.count);
+			var n1 = new TreeNode("Folder 1", "folder");
+			// console.log("folder Count", n1.count);
+				var n11 = new TreeNode("index.js", "file");
+			var n2 = new TreeNode("Folder 2", "folder");
+			// console.log("folder Count", n2.count);
+			var n3 = new TreeNode("Folder 3", "folder");
+			// console.log("folder Count", n3.count);
+				var n31 = new TreeNode("style.css", "file");
+				var n32 = new TreeNode("Folder 3.2", "folder");
+					// var n321 = new TreeNode("app.jsx", "file");
+				var n33 = new TreeNode("app.cpp", "file");
+
+				//
+				const n4 = new TreeNode("Folder 3.5", "folder")
+				// console.log("folder Count", n4.count);
+				const f5 = new TreeNode("app.jsx", "file")
+
+				const n5 = new TreeNode("Folder 3.6", "folder")
+				// console.log("folder Count", n5.count);
+				const f6 = new TreeNode("File 6.html", "file")
+				const f7 = new TreeNode("File 6,5", "file");
+
+/*         var root = new TreeNode("root");
+			var n1 = new TreeNode("folder", "Folder 1");
+				var n11 = new TreeNode("file", "File 1.1");
+			var n2 = new TreeNode("folder", "Folder 2");
+			var n3 = new TreeNode("folder", "Folder 3");
+				var n31 = new TreeNode("file", "File 3.1");
+				var n32 = new TreeNode("folder", "Folder 3.2");
+					var n321 = new TreeNode("file", "File 3.2.1");
+				var n33 = new TreeNode("file", "File 3.3"); */
+
+		root.addChild(n1);
+		root.addChild(n2);
+		root.addChild(n3);
+
+		n1.addChild(n11);
+
+		n3.addChild(n31);
+		// n3.addChild(n32); // comment out the node.
+		n3.addChild(n33);
+		
+		//add n4 to n3
+		n3.addChild(n4)
+		n4.addChild(f5);
+
+		n4.addChild(n5)
+		n5.addChild(f6)
+		n5.addChild(f7)
+		// n3.setEnabled(false);
+        // n3.collapseAllNodes();
+        // n3.setExpanded(false);
+
+		// n32.add Child(n321); //comment out this node
+
+		var view = new TreeView(root, "#container");
+        view.changeOption('show_root', !TreeUtil.getProperty(view.getOptions(), 'show_root', true));
+        view.reload();
+	</script>
+<div id="tab">
+	<script src="index.js"></script>
+</div>
+</body>
+</html>
